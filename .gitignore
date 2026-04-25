@@ -1,0 +1,37 @@
+# Evironnement virtuel
+venv/   
+Env/
+env/    
+venv.bak/
+venv_old/       
+# Python
+*.pyc
+__pycache__/
+# Django
+db.sqlite3
+media/
+#Base de données(on ne push pas la base de données sur github)
+db.sqlite3
+# Fichiers de configuration sensibles   
+.env
+# Fichiers de log
+logs/
+*.log
+# Fichiers de cache
+__pycache__/
+*.pyc
+# Fichiers de test
+tests/
+# Fichiers de documentation
+docs/
+# Fichiers de configuration de l'IDE
+.idea/
+.vscode/
+# Fichiers de build
+build/
+dist/
+*.egg-info/
+# Fichiers de déploiement
+deploy/
+# Fichiers de configuration de l'application
+config/
