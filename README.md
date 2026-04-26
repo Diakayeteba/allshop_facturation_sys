@@ -20,5 +20,5 @@ Il permet de gérer les clients, de générer des factures professionnelles et d
 
 1. **Cloner le projet**
    ```bash
-   git clone [https://github.com/Diakayeteba/allshop_facturation_sys.git](https://github.com/TON_PSEUDO/allshop_facturation_sys.git)
+   git clone [https://github.com/Diakayeteba/allshop_facturation_sys.git](https://github.com/Diakayeteba/allshop_facturation_sys.git)
    cd allshop_facturation_sys

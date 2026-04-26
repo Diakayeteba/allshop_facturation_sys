@@ -1,7 +1,26 @@
+:root {
+    /* Variables pour changer facilement les couleurs plus tard */
+    --primary-gradient: linear-gradient(135deg, #dbdfee 0%, #764ba2 100%);
+    --text-color: #2d3436;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: var(--font-main);
+    color: var(--text-color);
+    
+    /* Background dégradé moderne et dynamique */
+    background: var(--primary-gradient);
+    
+    /* Assure que le dégradé couvre toute la hauteur de l'écran */
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Lissage des polices pour un rendu plus pro */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
