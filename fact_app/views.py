@@ -20,3 +20,14 @@ class HomeView(TemplateView):
     def post(self, request, *args, **kwargs):
         return render(request, self.template_name, self.context)    
     
+
+    class AddCustomerView(View):
+        """ View to add a new customer """
+        template_name = 'add_customer.html'
+        def get(self, request, *args, **kwargs):
+            # Logic to add a new customer
+            return render(request, self.template_name,)
+        
+        def post(self, request, *args, **kwargs):
+            # Logic to handle form submission for adding a new customer
+            return render(request, self.template_name,)

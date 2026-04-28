@@ -12,7 +12,7 @@
 <body>
 
    <! --header-->
-   <header>
+   <header  class="bg-light text-center text-lg-start">
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">ALLSHOP FACTURATION system</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,18 +49,16 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Plus d'options
+        More options
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Ajouter un client</a>
-          <a class="dropdown-item" href="#">Ajouter un produit</a>
+          <a class="dropdown-item" href="{% url 'add-customer' %}">Add customer</a>
+          <a class="dropdown-item" href="#">Add product</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Statistiques</a>
+          <a class="dropdown-item" href="#">statistic</a>
         </div>
       </li>
       
@@ -74,6 +72,14 @@
     {% endblock %}
 </div>
 
+<!--footer-->
+<footer class="bg-light text-center text-lg-start">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2026 Copyright:
+    <a class="text-dark" href="mailto:madoudiakayeteba@gmail.com">Allshop facturation system</a>
+  </div>
+</footer>
+<!-- endcopyright -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

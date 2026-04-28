@@ -3,7 +3,7 @@ body{
     padding: 0;
     font: 400 .875rem 'Open Sans', sans-serif;
     color: #bcd0f7;
-    background: #1A233A;
+    background: #1444bd;
     position: relative;
     height: 100%;
 }
@@ -102,7 +102,7 @@ body{
 }
 .custom-table thead th {
     border: 0;
-    color: #ffffff;
+    color: #4d4b4b;
 }
 .custom-table > tbody tr:hover {
     background: #172033;
@@ -133,17 +133,17 @@ body{
 
 /* Force la couleur sur toutes les cellules du tableau */
 .table, .custom-table tbody td {
-    color: #ffffff !important; /* Blanc pur */
+    color: #4d4c4c !important; /* Blanc pur */
 }
 
 /* Si les noms des clients sont des liens <a> */
 .table tbody td a {
-    color: #ffffff;
+    color: #5e5c5c;
     text-decoration: none;
 }
 
 /* Pour la barre de navigation (Navbar) si elle est en noir */
 .navbar-light .navbar-nav .nav-link, 
 .navbar-brand {
-    color: #ffffff !important;
+    color: #666464 !important;
 }
