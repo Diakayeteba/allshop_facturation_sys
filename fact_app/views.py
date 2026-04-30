@@ -56,7 +56,6 @@ class HomeView(TemplateView):
                   else:
                          messages.error(request, 'Sorry,. Please try again the sent data is not valid!')
 
-                except Exception as e:
-                    messages.error(request, 'Sorry our system is detecting the following issues: {e}')
-
+            except Exception as e:
+                    messages.error(request, f"Sorry, our system detected the following issue: {e}")
             return render(request, self.template_name,)
