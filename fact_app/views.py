@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 from .models import  *
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin   
+
 
 
 
@@ -26,9 +28,10 @@ class HomeView(TemplateView):
         return render(request, self.template_name, self.context)    
     
 
-    class AddCustomerView(View):
+    class AddCustomerView(LoginRequiredMixin, View):
         """ View to add a new customer """
         template_name = 'add_customer.html'
+        login_url = '/admin/' # Redirige ici si l'utilisateur n'est pas connecté
         def get(self, request, *args, **kwargs):
             # Logic to add a new customer
             return render(request, self.template_name,)
