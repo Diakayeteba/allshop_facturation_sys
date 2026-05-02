@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import render 
 
 
 # =========================
@@ -18,7 +19,13 @@ class Customer(models.Model):
     address = models.TextField(blank=True, null=True)
 
     sex = models.CharField(max_length=10, choices=SEX_TYPES, blank=True, null=True)
-    age = models.PositiveIntegerField(blank=True, null=True)
+    AGE_CHOICES = (
+    ('0-18', '0-18'),
+    ('18-30', '18-30'),
+    ('30+', '30+'),
+)
+
+    age = models.CharField(max_length=10, choices=AGE_CHOICES, blank=True, null=True)
 
     city = models.CharField(max_length=100, blank=True, null=True)
     zip_code = models.CharField(max_length=20, blank=True, null=True)
