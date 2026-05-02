@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.shortcuts import render 
+
 
 
 # =========================
@@ -50,9 +50,9 @@ class Customer(models.Model):
 class Invoice(models.Model):
 
     INVOICE_TYPE = (
-        ('R', 'RECU'),
-        ('P', 'PROFORMA FACTURE'),
-        ('F', 'FACTURE'),
+        ('R', 'RECIEPT'),
+        ('P', 'PROFORMA INVOICE'),
+        ('I', 'INVOICE'),
     )
 
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
@@ -66,7 +66,7 @@ class Invoice(models.Model):
     last_updated_date = models.DateTimeField(null=True, blank=True)
     paid = models.BooleanField(default=False)
 
-    invoice_type = models.CharField(max_length=1, choices=INVOICE_TYPE, default='F')
+    invoice_type = models.CharField(max_length=1, choices=INVOICE_TYPE, default='I')
 
     comments = models.TextField(blank=True, null=True, max_length=1000)
 

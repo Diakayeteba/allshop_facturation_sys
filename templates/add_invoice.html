@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><br>
+    <h2 class="text-capitalize text-center mx-10 bg-dark text-white">Register a New Invoice</h2>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+         <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="customer">Customer</label>
+                    <select name="customer" id="customer" class="form-control">
+                        <option value="">Choose the customer...</option>
+                        {% for customer in customers %}
+                            <option value="{{ customer.id }}">{{forloop.counter}}. {{ customer.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>  
+
+        
+
+        <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="invoice_type">Invoice Type</label>
+                    <select name="invoice_type" id="invoice_type" class="form-control">
+                        <option value="">Choose the invoice type...</option>
+                        <option value="R">Receipt</option>
+                        <option value="P">Proforma Invoice</option>
+                        <option value="I">Invoice</option>
+                    </select>
+                </div>
+            </div>  
+
+
+            <div id="wrapper">
+    <div class="form-row">
+        
+        <div class="form-group col-md-4">
+            <label for="article-1">Item Name</label>
+            <input type="text" class="form-control" id="article-1" name="article-1" placeholder="Enter item name">
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="qty-1">Quantity</label>
+            <input type="number" class="form-control" id="qty-1" name="qty-1" min="1" step="1" placeholder="Qty">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="unit-1">Unit Price</label>
+            <input type="number" class="form-control" id="unit-1" name="unit-1" min="1" step="0.1" placeholder="Unit price">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="total-a-1">Total Price</label>
+            <input type="number" class="form-control" id="total-a-1" name="total-a-1" readonly placeholder="Total">
+        </div>
+
+    </div>
+</div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="total">Total</label>
+                    <input type="number" class="form-control" id="total" name="total" placeholder="Enter total amount" min="0" step="0.1" >
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="comments">Comments</label>
+                    <textarea class="form-control" id="comments" name="comments" placeholder="Enter comments"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        
+        </div>
+        </form>
+        
+        <br><br>
+
+       <div class="row">
+            <button id="btn-add" class="btn btn-outline-danger w-50 col-md-6">Add a new Item line</button>
+             <button id="btn-remove" class="btn btn-outline-warning w-50 col-md-6">Remove last Item line</button>
+    
+                
+       </div>
+                
+<br><br>
+    {% endblock content %}
+`
+    <script type="text/javascript">
+       // click to add a new item line
+       $(document).on('click', '#btn-add', function(){
+          var number = $('#wrapper').children().length +1
+          
+          let formAdd = `
+        })
+    </script>

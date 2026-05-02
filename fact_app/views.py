@@ -28,7 +28,7 @@ class HomeView(TemplateView):
         return render(request, self.template_name, self.context)    
     
 
-    class AddCustomerView(LoginRequiredMixin, View):
+class AddCustomerView(LoginRequiredMixin, View):
         """ View to add a new customer """
         template_name = 'add_customer.html'
         login_url = '/admin/' # Redirige ici si l'utilisateur n'est pas connecté
@@ -62,3 +62,23 @@ class HomeView(TemplateView):
             except Exception as e:
                     messages.error(request, f"Sorry, our system detected the following issue: {e}")
             return render(request, self.template_name,)
+        
+
+class AddInvoiceView(LoginRequiredMixin, View):
+            """ View to add a new invoice """
+            template_name = 'add_invoice.html'
+
+            Customer = Customer.objects.select_related('saved_by').all()
+
+            context = {
+                'customers': Customer,    
+            }
+
+            login_url = '/admin/' # Redirige ici si l'utilisateur n'est pas connecté
+            def get(self, request, *args, **kwargs):
+                # Logic to add a new invoice
+                return render(request, self.template_name, self.context)
+            
+            def post(self, request, *args, **kwargs):
+                # Logic to handle form submission for adding a new invoice
+                return render(request, self.template_name, self.context)

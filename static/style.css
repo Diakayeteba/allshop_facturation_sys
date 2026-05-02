@@ -3,7 +3,7 @@ body{
     padding: 0;
     font: 400 .875rem 'Open Sans', sans-serif;
     color: #bcd0f7;
-    background: #1444bd;
+    background: #1444bd !important;
     position: relative;
     height: 100%;
 }
@@ -82,6 +82,8 @@ body{
 @media (max-width: 767px) {
     .invoice-container {
         padding: 1rem;
+        background: #1444bd;
+        min-height: 100vh;
     }
 }
 
