@@ -3,7 +3,7 @@ body{
     padding: 0;
     font: 400 .875rem 'Open Sans', sans-serif;
     color: #bcd0f7;
-    background: #1444bd !important;
+    background: #03133a !important;
     position: relative;
     height: 100%;
 }
@@ -82,7 +82,7 @@ body{
 @media (max-width: 767px) {
     .invoice-container {
         padding: 1rem;
-        background: #1444bd;
+        background: #020d28;
         min-height: 100vh;
     }
 }
@@ -100,7 +100,7 @@ body{
     border: 1px solid #2b3958;
 }
 .custom-table thead {
-    background: #2f71c1;
+    background: #03162d;
 }
 .custom-table thead th {
     border: 0;
@@ -147,5 +147,5 @@ body{
 /* Pour la barre de navigation (Navbar) si elle est en noir */
 .navbar-light .navbar-nav .nav-link, 
 .navbar-brand {
-    color: #666464 !important;
+    color: #534d4d !important;
 }
