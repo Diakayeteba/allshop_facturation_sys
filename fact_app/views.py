@@ -81,4 +81,13 @@ class AddInvoiceView(LoginRequiredMixin, View):
             
             def post(self, request, *args, **kwargs):
                 # Logic to handle form submission for adding a new invoice
+                items = []
+
+                try:
+
+                    customer = request.POST.get('customer')
+                    type = request.POST.get('type')
+
+                except:
+                     pass
                 return render(request, self.template_name, self.context)

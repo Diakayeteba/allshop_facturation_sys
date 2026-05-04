@@ -103,12 +103,12 @@
 
                                 <div class="form-group col-md-2">
                                     <label for="qty-${number}">Quantity</label>
-                                    <input type="number" class="form-control" id="qty-${number}" name="qty-${number}" min="1" step="1" placeholder="Qty">
+                                    <input type="number" class="form-control" id="qty-${number}" name="qty-${number}" min="1" step="1" onchange="handleChangeSingleArticle(this.id)" placeholder="Qty">
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="unit-${number}">Unit Price</label>
-                                    <input type="number" class="form-control" id="unit-${number}" name="unit-${number}" min="1" step="0.1" placeholder="Unit price">
+                                    <input type="number" class="form-control" id="unit-${number}" name="unit-${number}" min="1" step="0.1" onchange="handleChangeSingleArticle(this.id)" placeholder="Unit price">
                                 </div>
 
                                 <div class="form-group col-md-3">
@@ -130,8 +130,31 @@
         $(document).on('click', '#btn-remove', function(){
             $('#wrapper').children().last().remove();
 
+        })
+
+        // compute different total
+        function handleChangeSingleArticle(id) {
+            console.log(id);
+            let articleId = id.split('-')[1];
+
+            let idQty = `#qty-${articleId}`;
+
+            let unitId = `#unit-${articleId}`;
+
+            let totalIdLine = `#total-a-${articleId}`;
+
+            let totalLine = parseFloat($(idQty).val()) * parseFloat($(unitId).val());
+
+            $(totalIdLine).val(totalLine);
+
+            $('#total').val(parseFloat($('#total').val()) + totalLine);
+
+        }
+
+    // this code in not completed you need to add a busness logic for changing in quantity and removving
+
     </script>
     <br><br>
-    {% endblock content %}
+{% endblock content %}
 
     
