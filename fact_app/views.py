@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 from .models import  *
 from django.views import View
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin   
+from django.contrib.auth.mixins import LoginRequiredMixin  
+from django.db import transaction
 
 
 
@@ -79,6 +80,7 @@ class AddInvoiceView(LoginRequiredMixin, View):
                 # Logic to add a new invoice
                 return render(request, self.template_name, self.context)
             
+            @transaction.atomic
             def post(self, request, *args, **kwargs):
                 # Logic to handle form submission for adding a new invoice
                 items = []
@@ -86,8 +88,39 @@ class AddInvoiceView(LoginRequiredMixin, View):
                 try:
 
                     customer = request.POST.get('customer')
-                    type = request.POST.get('type')
+                    type = request.POST.get('invoice_type')
 
-                except:
-                     pass
+                    Articles = request.POST.getlist('article')
+                    Qties = request.POST.get('qty')
+                    units=request.POST.get('unit')
+                    total_a = request.POST.get('total-a')
+                    total = request.POST.get('total')
+                    comment = request.POST.get('comment')
+
+                    invoice_object = {
+                        'customer_id': customer,
+                        'saved_by': request.user,  # Assuming the user is authenticated
+                        'total': total,
+                        'invoice_type': type,
+                        'comment': comment,
+                    }
+
+                    invoice = Invoice.objects.create(**invoice_object)
+                    for index, article in enumerate(Articles):
+                        data = Article(
+                            invoice=invoice.id,
+                            name=article,
+                            quantity=Qties[index],
+                            unit_price=units[index],
+                            total=total_a[index],
+                        )
+                        items.append(data)
+                    created = Article.objects.bulk_create(items)
+                    if created:
+                        messages.success(request, 'Data saved successfully!')  
+                    else:
+                        messages.error(request, 'Sorry,. Please try again the sent data is not valid!') 
+
+                except Exception as e:
+                     messages.error(request, f"Sorry, our system detected the following error has occurred: {e}")
                 return render(request, self.template_name, self.context)
