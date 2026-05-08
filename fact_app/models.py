@@ -82,7 +82,7 @@ class Invoice(models.Model):
         """
         Calcule le total de la facture
         """
-        return sum(article.price for article in self.articles.all())
+        return sum(article.unit_price for article in self.articles.all())
 
 
 # =========================
@@ -99,10 +99,19 @@ class Article(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    quantity = models.IntegerField(default=1) # AJOUTE CECI
+    
+    total_line = models.DecimalField(max_digits=10, decimal_places=2, default=0) # AJOUTE CECI
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Calcul automatique avant la sauvegarde
+        self.total_line = self.unit_price * self.quantity
+        super(Article, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Article'

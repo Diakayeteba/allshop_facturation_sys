@@ -6,155 +6,145 @@
 
     <form method="post" class="mt-4">
         {% csrf_token %}
-         <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="customer">Customer</label>
-                    <select name="customer" id="customer" class="form-control">
-                        <option value="">Choose the customer...</option>
-                        {% for customer in customers %}
-                            <option value="{{ customer.id }}">{{forloop.counter}}. {{ customer.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>  
-
         
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="customer" class="text-white">Customer</label>
+                <select name="customer" id="customer" class="form-control" required>
+                    <option value="">Choose the customer...</option>
+                    {% for customer in customers %}
+                        <option value="{{ customer.id }}">{{forloop.counter}}. {{ customer.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>  
 
         <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="invoice_type">Invoice Type</label>
-                    <select name="invoice_type" id="invoice_type" class="form-control">
-                        <option value="">Choose the invoice type...</option>
-                        <option value="R">Receipt</option>
-                        <option value="P">Proforma Invoice</option>
-                        <option value="I">Invoice</option>
-                    </select>
-                </div>
-            </div>  
+            <div class="form-group col-md-12">
+                <label for="invoice_type" class="text-white">Invoice Type</label>
+                <select name="invoice_type" id="invoice_type" class="form-control" required>
+                    <option value="">Choose the invoice type...</option>
+                    <option value="R">Receipt</option>
+                    <option value="P">Proforma Invoice</option>
+                    <option value="I">Invoice</option>
+                </select>
+            </div>
+        </div>  
 
-
-            <div id="wrapper">
-    <div class="form-row">
-        
-        <div class="form-group col-md-4">
-            <label for="article-1">Item Name</label>
-            <input type="text" class="form-control" id="article-1" name="article-1" placeholder="Enter item name">
-        </div>
-
-        <div class="form-group col-md-2">
-            <label for="qty-1">Quantity</label>
-            <input type="number" class="form-control" id="qty-1" name="qty-1" min="1" step="1" placeholder="Qty">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="unit-1">Unit Price</label>
-            <input type="number" class="form-control" id="unit-1" name="unit-1" min="1" step="0.1" placeholder="Unit price">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="total-a-1">Total Price</label>
-            <input type="number" class="form-control" id="total-a-1" name="total-a-1" readonly placeholder="Total">
-        </div>
-
-    </div>
-</div>
+        <div id="wrapper">
             <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="total">Total</label>
-                    <input type="number" class="form-control" id="total" name="total" placeholder="Enter total amount" min="0" step="0.1" >
+                <div class="form-group col-md-4">
+                    <label class="text-white">Item Name</label>
+                    <input type="text" class="form-control" name="article" placeholder="Enter item name">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label class="text-white">Quantity</label>
+                    <input type="number" class="form-control" name="qty" min="1" step="1" onchange="handleChangeSingleArticle(this)" placeholder="Qty">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label class="text-white">Unit Price</label>
+                    <input type="number" class="form-control" name="unit" min="1" step="0.1" onchange="handleChangeSingleArticle(this)" placeholder="Unit price">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label class="text-white">Total Price</label>
+                    <input type="number" class="form-control" name="total-a" readonly placeholder="Total">
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="comments">Comments</label>
-                    <textarea class="form-control" id="comments" name="comments" placeholder="Enter comments"></textarea>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-        
         </div>
-        </form>
-        
-        <br><br>
 
-       <div class="row">
-            <button id="btn-add" class="btn btn-outline-danger w-50 col-md-6">Add a new Item line</button>
-             <button id="btn-remove" class="btn btn-outline-warning w-50 col-md-6">Remove last Item line</button>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="total" class="text-white">Total</label>
+                <input type="number" class="form-control" id="total" name="total" placeholder="Enter total amount" min="0" step="0.1" readonly>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="comments" class="text-white">Comments</label>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Enter comments"></textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
     
-                
-       </div>
-                
-<br><br>
+    <br><br>
 
-<script type="text/javascript">
-       // click to add a new item line
-       $(document).on('click', '#btn-add', function(){
-          var number = $('#wrapper').children().length +1
-          
-          let formAdd = `
+    <div class="row">
+        <button id="btn-add" class="btn btn-outline-warning w-50 col-md-6">Add a new Item line</button>
+        <button id="btn-remove" class="btn btn-outline-danger w-50 col-md-6">Remove last Item line</button>
+    </div>
+            
+    <br><br>
 
-                        <div class="form-row">
-                                
-                                <div class="form-group col-md-4">
-                                    <label for="article-${number}">#$${number} Item Name</label>
-                                    <input type="text" class="form-control" id="article-${number}" name="article-${number}" placeholder="Enter item name">
-                                </div>
+    <script type="text/javascript">
+    // Cette fonction vérifie si jQuery est prêt
+    function initInvoice() {
+        console.log("Système de facturation prêt !");
 
-                                <div class="form-group col-md-2">
-                                    <label for="qty-${number}">Quantity</label>
-                                    <input type="number" class="form-control" id="qty-${number}" name="qty-${number}" min="1" step="1" onchange="handleChangeSingleArticle(this.id)" placeholder="Qty">
-                                </div>
+        // Bouton Ajouter
+        $('#btn-add').on('click', function(e) {
+            e.preventDefault();
+            let number = $('#wrapper').children().length + 1;
+            let formAdd = `
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="text-white">#${number} Item</label>
+                        <input type="text" class="form-control" name="article" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="text-white">Qty</label>
+                        <input type="number" class="form-control" name="qty" min="1" onchange="handleChangeSingleArticle(this)">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="text-white">Price</label>
+                        <input type="number" class="form-control" name="unit" step="0.1" onchange="handleChangeSingleArticle(this)">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="text-white">Total</label>
+                        <input type="number" class="form-control" name="total-a" readonly>
+                    </div>
+                </div>`;
+            $('#wrapper').append(formAdd);
+        });
 
-                                <div class="form-group col-md-3">
-                                    <label for="unit-${number}">Unit Price</label>
-                                    <input type="number" class="form-control" id="unit-${number}" name="unit-${number}" min="1" step="0.1" onchange="handleChangeSingleArticle(this.id)" placeholder="Unit price">
-                                </div>
+        // Bouton Supprimer
+        $('#btn-remove').on('click', function(e) {
+            e.preventDefault();
+            if ($('#wrapper').children().length > 1) {
+                $('#wrapper').children().last().remove();
+                updateTotal();
+            }
+        });
+    }
 
-                                <div class="form-group col-md-3">
-                                    <label for="total-a-${number}">Total Price</label>
-                                    <input type="number" class="form-control" id="total-a-${number}" name="total-a-${number}" readonly placeholder="Total">
-                                </div>
-
-                            </div>
-
-
-            `;   
-        
-            $('#wrapper:last').append(formAdd);
-
-        })
-
-
-        // click to remove the last item line
-        $(document).on('click', '#btn-remove', function(){
-            $('#wrapper').children().last().remove();
-
-        })
-
-        // compute different total
-        function handleChangeSingleArticle(id) {
-            console.log(id);
-            let articleId = id.split('-')[1];
-
-            let idQty = `#qty-${articleId}`;
-
-            let unitId = `#unit-${articleId}`;
-
-            let totalIdLine = `#total-a-${articleId}`;
-
-            let totalLine = parseFloat($(idQty).val()) * parseFloat($(unitId).val());
-
-            $(totalIdLine).val(totalLine);
-
-            $('#total').val(parseFloat($('#total').val()) + totalLine);
-
+    // Sécurité pour attendre que jQuery soit défini
+    var checkjQuery = setInterval(function() {
+        if (window.jQuery) {
+            clearInterval(checkjQuery);
+            initInvoice();
         }
+    }, 100);
 
-    // this code in not completed you need to add a busness logic for changing in quantity and removving
+    function handleChangeSingleArticle(element) {
+        let row = $(element).closest('.form-row');
+        let qty = parseFloat(row.find('input[name="qty"]').val()) || 0;
+        let unit = parseFloat(row.find('input[name="unit"]').val()) || 0;
+        row.find('input[name="total-a"]').val((qty * unit).toFixed(2));
+        updateTotal();
+    }
 
-    </script>
+    function updateTotal() {
+        let grandTotal = 0;
+        $('input[name="total-a"]').each(function() {
+            grandTotal += parseFloat($(this).val()) || 0;
+        });
+        $('#total').val(grandTotal.toFixed(2));
+    }
+</script>
     <br><br>
 {% endblock content %}
-
-    
