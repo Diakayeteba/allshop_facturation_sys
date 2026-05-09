@@ -8,6 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin  
 from django.db import transaction
 
+from django.core.paginator import (Paginator, EmptyPage, PageNotAnInteger)
+
 
 
 
@@ -25,7 +27,27 @@ class HomeView(TemplateView):
     }
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, self.context)
+           # default pagination settings
+        Invoices_list = Invoice.objects.select_related('customer').all()
+        default_page = 1
+        page = request.GET.get('page', default_page)
+        # paginate items
+        items_per_page = 5
+        paginator = Paginator(Invoices_list, items_per_page)
+
+        try:
+             items_page = paginator.page(page)
+        except PageNotAnInteger:
+                items_page = paginator.page(default_page)
+        except EmptyPage:
+                items_page = paginator.page(paginator.num_pages)
+        context = {
+            'invoices': items_page,
+        }
+
+               # self.context['invoices'] = items_page
+           
+        return render(request, self.template_name, context)
     
     def post(self, request, *args, **kwargs):
         return render(request, self.template_name, self.context)    

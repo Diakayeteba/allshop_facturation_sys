@@ -57,7 +57,7 @@
                <img src="{% static 'images/icon-no.svg' %}" alt="False">
                {% endif %}
             </td>
-            <td>{{facture.invoice_date_time }}</td>
+            <td>{{facture.get_invoice_type_display }}</td>
             <td>
                <a href="#" title="Detail" class="badge text-white bg-success">View</a>
 
@@ -75,12 +75,50 @@
 
          {% endfor %}
 
+         # Pagination
+
+         <div class="pagination" role="group" aria-label="Item pagination">
+            {% if invoices.has_previous %}
+
+               <a href="?page={{ invoices.previous_page_number }}" class="btn btn-outline-primary">&laquo; Previous</a>
+
+            {% endif %}
+
+            {% for page_number in invoices.paginator.page_range %}
+               {% if page_number == invoices.number %}
+
+                  <button class="btn btn-outline-primary active">
+                     <span {{ page_number }} <span class="sr-only">(current)</span></span>
+                  </button>
+
+               {% else %}
+                  <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                  {{ page_number }}
+                  </a>
+
+               {% endif %}
+
+            {% endfor %}
+
+            {% if invoices.has_next %}
+
+                <a href="?page={{ invoices.next_page_number }}" class="btn btn-outline-primary">&laquo; Previous</a>
+
+            {% endif %}
+            
+
+            
+
          
 
-         {% else %}
+         </div>
+
          
-         <p class="text-center text-white">No invoice found.</p>
+         
+         {% else %}
+             <p class="text-center text-white">No invoices found.</p>
          {% endif %}
+
 
 
       </tbody>
@@ -193,6 +231,4 @@
 
 </script>
 
-
-
-{% endblock %}
+{% endblock content %}

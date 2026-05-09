@@ -83,6 +83,7 @@ class Invoice(models.Model):
         Calcule le total de la facture
         """
         return sum(article.unit_price for article in self.articles.all())
+    
 
 
 # =========================
