@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-13 23:04+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\templates\index.html:38
+msgid "Customer Name"
+msgstr ""
+
+#: .\templates\index.html:39
+msgid "DATE"
+msgstr ""
+
+#: .\templates\index.html:40
+msgid "TOTAL"
+msgstr ""
+
+#: .\templates\index.html:41
+msgid "PAID"
+msgstr ""
+
+#: .\templates\index.html:42
+msgid "TYPE OF INVOICE"
+msgstr ""
+
+#: .\templates\index.html:43
+msgid "ACTION"
+msgstr ""
+
+#: .\templates\index.html:63
+msgid "View"
+msgstr ""
+
+#: .\templates\index.html:67 .\templates\index.html:185
+msgid "Delete"
+msgstr ""
+
+#: .\templates\index.html:72
+msgid "Modify"
+msgstr ""
+
+#: .\templates\index.html:136
+msgid "Modification"
+msgstr ""
+
+#: .\templates\index.html:147
+msgid "This bill has been paid?"
+msgstr ""
+
+#: .\templates\index.html:150
+msgid "Yes"
+msgstr ""
+
+#: .\templates\index.html:153
+msgid "No"
+msgstr ""
+
+#: .\templates\index.html:157 .\templates\index.html:184
+msgid "Close"
+msgstr ""
+
+#: .\templates\index.html:158
+msgid "Save"
+msgstr ""
+
+#: .\templates\index.html:172
+msgid "Delete Invoice"
+msgstr ""
+
+#: .\templates\index.html:181
+msgid "Are you sure you want to delete the invoice  ?"
+msgstr ""

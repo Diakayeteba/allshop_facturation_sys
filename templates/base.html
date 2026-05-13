@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% load static %}
+{% load i18n %}
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +17,10 @@
 
 
 <body>
+
+    {%get_available_languages as LANGUAGES %}
+
+    {% get_language_info_list for LANGUAGES as languages %}
 
    <! --header-->
    <header  class="bg-light text-center text-lg-start">
@@ -31,15 +37,12 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-         Language
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">English</a>
-          <a class="dropdown-item" href="#">Français</a>
+        <div class="nav-link text-dark" aria-labelledby="navbarDropdown">
+          {% for language in languages %}
+            <a class="dropdown-item" href="/{{ language.code }}">{{ language.name_local }}</a>
+          {% endfor %}
         </div>
-      </li>
+      
       
     </ul>
   </div>
