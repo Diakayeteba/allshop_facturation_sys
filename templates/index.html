@@ -11,7 +11,7 @@
 
 <div class="row">
    <a href="{% url 'add-customer' %}" class="btn col-md-4 btn-primary">
-      {_% trans "Register New Customer" %} <span class="badge text-bg-secondary"></span>
+      {% trans "Register New Customer" %} <span class="badge text-bg-secondary"></span>
    </a>
 
    <a href="{% url 'add-invoice' %}" class="col-md-4">
@@ -19,9 +19,8 @@
    </a>
 
    <a href="{% url 'add-invoice' %}" class="btn col-md-4 btn-primary">
-       {_% trans "Register New Invoice" %} <span class="badge text-bg-secondary"></span>
+       {% trans "Register New Invoice" %} <span class="badge text-bg-secondary"></span>
    </a>
-
 </div>
 
 <br> <br>
