@@ -1,111 +1,118 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
 
 {% block content %}
-    <br><br>
-    <h2 class="text-capitalize text-center mx-10 bg-dark text-white">Register a New Invoice</h2>
+<br><br>
+<h2 class="text-capitalize text-center mx-10 bg-dark text-white">{% trans "Register a New Invoice" %}</h2>
 
-    <form method="post" class="mt-4">
-        {% csrf_token %}
-        
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="customer" class="text-white">Customer</label>
-                <select name="customer" id="customer" class="form-control" required>
-                    <option value="">Choose the customer...</option>
-                    {% for customer in customers %}
-                        <option value="{{ customer.id }}">{{forloop.counter}}. {{ customer.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>  
+<form method="post" class="mt-4">
+    {% csrf_token %}
 
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="invoice_type" class="text-white">Invoice Type</label>
-                <select name="invoice_type" id="invoice_type" class="form-control" required>
-                    <option value="">Choose the invoice type...</option>
-                    <option value="R">Receipt</option>
-                    <option value="P">Proforma Invoice</option>
-                    <option value="I">Invoice</option>
-                </select>
-            </div>
-        </div>  
-
-        <div id="wrapper">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label class="text-white">Item Name</label>
-                    <input type="text" class="form-control" name="article" placeholder="Enter item name">
-                </div>
-
-                <div class="form-group col-md-2">
-                    <label class="text-white">Quantity</label>
-                    <input type="number" class="form-control" name="qty" min="1" step="1" onchange="handleChangeSingleArticle(this)" placeholder="Qty">
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label class="text-white">Unit Price</label>
-                    <input type="number" class="form-control" name="unit" min="1" step="0.1" onchange="handleChangeSingleArticle(this)" placeholder="Unit price">
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label class="text-white">Total Price</label>
-                    <input type="number" class="form-control" name="total-a" readonly placeholder="Total">
-                </div>
-            </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="customer" class="text-white">{% trans "Customer" %}</label>
+            <select name="customer" id="customer" class="form-control" required>
+                <option value="">{% trans "Choose the customer..." %}</option>
+                {% for customer in customers %}
+                <option value="{{ customer.id }}">{{forloop.counter}}. {{ customer.name }}</option>
+                {% endfor %}
+            </select>
         </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="total" class="text-white">Total</label>
-                <input type="number" class="form-control" id="total" name="total" placeholder="Enter total amount" min="0" step="0.1" readonly>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="comments" class="text-white">Comments</label>
-                <textarea class="form-control" id="comments" name="comments" placeholder="Enter comments"></textarea>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-    
-    <br><br>
-
-    <div class="row">
-        <button id="btn-add" class="btn btn-outline-warning w-50 col-md-6">Add a new Item line</button>
-        <button id="btn-remove" class="btn btn-outline-danger w-50 col-md-6">Remove last Item line</button>
     </div>
-            
-    <br><br>
 
-    <script type="text/javascript">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="invoice_type" class="text-white">{% trans "Invoice Type" %}</label>
+            <select name="invoice_type" id="invoice_type" class="form-control" required>
+                <option value="">{% trans "Choose the invoice type..." %}</option>
+                <option value="R">{% trans "Receipt" %}</option>
+                <option value="P">{% trans "Proforma Invoice" %}</option>
+                <option value="I">{% trans "Invoice" %}</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label class="text-white">{% trans "Item Name" %}</label>
+                <input type="text" class="form-control" name="article" placeholder="{% trans 'Enter item name' %}">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class="text-white">{% trans "Quantity" %}</label>
+                <input type="number" class="form-control" name="qty" min="1" step="1"
+                    onchange="handleChangeSingleArticle(this)" placeholder="{% trans 'Qty' %}">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="text-white">{% trans "Unit Price" %}</label>
+                <input type="number" class="form-control" name="unit" min="1" step="0.1"
+                    onchange="handleChangeSingleArticle(this)" placeholder="{% trans 'Unit price' %}">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="text-white">{% trans "Total Price" %}</label>
+                <input type="number" class="form-control" name="total-a" readonly placeholder="{% trans 'Total' %}">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="total" class="text-white">{% trans "Total" %}</label>
+            <input type="number" class="form-control" id="total" name="total"
+                placeholder="{% trans 'Enter total amount' %}" min="0" step="0.1" readonly>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="comments" class="text-white">{% trans "Comments" %}</label>
+            <textarea class="form-control" id="comments" name="comments"
+                placeholder="{% trans 'Enter comments' %}"></textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{% trans "Save" %}
+    </button>
+</form>
+
+<br><br>
+
+<div class="row">
+    <button id="btn-add" class="btn btn-outline-warning w-50 col-md-6">{% trans "Add a new Item line" %}</button>
+    <button id="btn-remove" class="btn btn-outline-danger w-50 col-md-6">{% trans "Remove last Item line" %}</button>
+</div>
+
+<br><br>
+
+<script type="text/javascript">
     // Cette fonction vérifie si jQuery est prêt
     function initInvoice() {
-        console.log("Système de facturation prêt !");
+        console.log("{% trans ''Système de facturation prêt ! %}");
 
         // Bouton Ajouter
-        $('#btn-add').on('click', function(e) {
+        $('#btn-add').on('click', function (e) {
             e.preventDefault();
             let number = $('#wrapper').children().length + 1;
             let formAdd = `
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label class="text-white">#${number} Item</label>
-                        <input type="text" class="form-control" name="article" placeholder="Name">
+                        <label class="text-white">#${number} {% trans "Item" %}</label>
+                        <input type="text" class="form-control" name="article" placeholder="{% trans "Name" %}">
                     </div>
                     <div class="form-group col-md-2">
-                        <label class="text-white">Qty</label>
+                        <label class="text-white">{% trans "Qty" %}</label>
                         <input type="number" class="form-control" name="qty" min="1" onchange="handleChangeSingleArticle(this)">
                     </div>
                     <div class="form-group col-md-3">
-                        <label class="text-white">Unit Price</label>
+                        <label class="text-white">{% trans "Unit Price" %}</label>
                         <input type="number" class="form-control" name="unit" step="0.1" onchange="handleChangeSingleArticle(this)">
                     </div>
                     <div class="form-group col-md-3">
-                        <label class="text-white">Total</label>
+                        <label class="text-white">{% trans "Total" %}</label>
                         <input type="number" class="form-control" name="total-a" readonly>
                     </div>
                 </div>`;
@@ -113,7 +120,7 @@
         });
 
         // Bouton Supprimer
-        $('#btn-remove').on('click', function(e) {
+        $('#btn-remove').on('click', function (e) {
             e.preventDefault();
             if ($('#wrapper').children().length > 1) {
                 $('#wrapper').children().last().remove();
@@ -123,7 +130,7 @@
     }
 
     // Sécurité pour attendre que jQuery soit défini
-    var checkjQuery = setInterval(function() {
+    var checkjQuery = setInterval(function () {
         if (window.jQuery) {
             clearInterval(checkjQuery);
             initInvoice();
@@ -140,11 +147,11 @@
 
     function updateTotal() {
         let grandTotal = 0;
-        $('input[name="total-a"]').each(function() {
+        $('input[name="total-a"]').each(function () {
             grandTotal += parseFloat($(this).val()) || 0;
         });
         $('#total').val(grandTotal.toFixed(2));
     }
 </script>
-    <br><br>
+<br><br>
 {% endblock content %}

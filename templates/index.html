@@ -26,7 +26,7 @@
 <br> <br>
 
 <div class="form-group ">
-   <input id="search" class="form-control" type="text" placeholder="Search....">
+   <input id="search" class="form-control" type="text" placeholder="{% trans 'Search....' %}">
 </div>
 
 <div>
@@ -52,21 +52,21 @@
             <td>{{ facture.get_total }}</td>
             <td>
                {% if facture.paid %}
-               <img src="{% static 'images/icon-yes.svg' %}" alt="True">
+               <img src="{% static 'images/icon-yes.svg' %}" alt="{% trans 'True' %}">
                {% else %}
-               <img src="{% static 'images/icon-no.svg' %}" alt="False">
+               <img src="{% static 'images/icon-no.svg' %}" alt="{% trans 'False' %}">
                {% endif %}
             </td>
             <td>{{facture.get_invoice_type_display }}</td>
             <td>
-               <a href="{% url 'view-invoice' pk=facture.pk %}" title="Detail" class="badge text-white bg-success">{% trans "View" %}</a>
+               <a href="{% url 'view-invoice' pk=facture.pk %}" title="{% trans 'Detail' %}" class="badge text-white bg-success">{% trans "View" %}</a>
 
                <button id="btn-invoice-sup" type="button" data-toggle="modal" data-target="#supprimer"
-                  class="badge text-white bg-danger" title="Supprimer" data-id="{{ facture.pk }}"
+                  class="badge text-white bg-danger" title="{% trans 'Delete' %}" data-id="{{ facture.pk }}"
                   data-customer="{{facture.customer.name}}">{% trans "Delete" %}
                </button>
 
-               <button id="btn-invoice-mod" type="button" data-toggle="modal" title="Modifier" data-target="#modifier"
+               <button id="btn-invoice-mod" type="button" data-toggle="modal" title="{% trans 'Modify' %}" data-target="#modifier"
                   data-id="{{facture.pk}}" data-customer="{{facture.customer.name}}"
                   class="badge text-dark bg-warning">{% trans "Modify" %}
                </button>
@@ -80,7 +80,7 @@
          <div class="pagination" role="group" aria-label="Item pagination">
             {% if invoices.has_previous %}
 
-               <a href="?page={{ invoices.previous_page_number }}" class="btn btn-outline-primary">&laquo; Previous</a>
+               <a href="?page={{ invoices.previous_page_number }}" class="btn btn-outline-primary">&laquo; {% trans "Previous" %}</a>
 
             {% endif %}
 
@@ -102,7 +102,7 @@
 
             {% if invoices.has_next %}
 
-                <a href="?page={{ invoices.next_page_number }}" class="btn btn-outline-primary">&laquo; Next</a>
+                <a href="?page={{ invoices.next_page_number }}" class="btn btn-outline-primary">&laquo;  {% trans "Next" %}</a>
 
             {% endif %}
             
@@ -116,7 +116,7 @@
          
          
          {% else %}
-             <p class="text-center text-white">No invoices found.</p>
+             <p class="text-center text-white">{% trans "No invoices found." %}</p>
          {% endif %}
 
 

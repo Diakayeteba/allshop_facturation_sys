@@ -1,3 +1,8 @@
+{% load static %}
+{% load i18n %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +166,7 @@ body {
     						<div class="row gutters">
     							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
     								<a href="madoudiakayeteba.com" class="invoice-logo">
-    									Madou Diakayeteba
+    									ManeShop
     								</a>
     							</div>
     							<div class="col-lg-6 col-md-6 col-sm-6">
@@ -206,8 +211,8 @@ body {
     									<table class="table custom-table m-0">
     										<thead>
     											<tr>
-    												<th>Items</th>
-													<th>Product ID</th>
+    												<th>{% trans "Items"% }</th>
+													<th>{% trans "Product ID"%}</th>
 													<th>Quantities</th>
 													<th>Unit Price</th>
 													<th>Subtotal</th>
