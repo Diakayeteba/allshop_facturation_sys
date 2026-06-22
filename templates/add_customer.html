@@ -3,40 +3,43 @@
 {% load static %}
 
 {% block content %}
-    <br><br>
-    <h2 class="text-capitalize text-center mx-10 bg-dark text-white">{% trans "Register a New Customer" %}</h2>
-    
-    <form method="post" class="mt-4">
-        {% csrf_token %}
-       <div class="form-row">
-            <div class="form-group col-md-6 ">
-                <label for="name" class="text-white">{% trans "Name" %}</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{% trans 'Enter customer name' %}" required>
-            </div>
+<br><br>
+<h2 class="text-capitalize text-center mx-10 bg-dark text-white">{% trans "Register New Customer" %}</h2>
 
-            <div class="form-group col-md-4">
-                <label for="email" class="text-white">{% trans "Email" %}</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="{% trans 'Enter customer email' %}" required>
-            </div>
-
-            <div class="form-group col-md-2">
-                <label for="phone" class="text-white">{% trans "Phone" %}</label>
-                <input type="phone" class="form-control" id="phone" name="phone" placeholder="{% trans 'Enter customer phone number' %}" required>
-            </div>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6 ">
+            <label for="name" class="text-white">{% trans "Name" %}</label>
+            <input type="text" class="form-control" id="name" name="name"
+                placeholder="{% trans 'Enter customer name' %}" required>
         </div>
-        <div class="form-row">  
 
-           <div class="form-group col-md-6">
-            <label for="sex"  class="text-white">{% trans "Sex" %}</label>
+        <div class="form-group col-md-4">
+            <label for="email" class="text-white">{% trans "Email" %}</label>
+            <input type="email" class="form-control" id="email" name="email"
+                placeholder="{% trans 'Enter customer email' %}" required>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="phone" class="text-white">{% trans "Phone" %}</label>
+            <input type="phone" class="form-control" id="phone" name="phone"
+                placeholder="{% trans 'Enter customer phone number' %}" required>
+        </div>
+    </div>
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label for="sex" class="text-white">{% trans "Sex" %}</label>
             <select name="sex" id="sex">
-                <option >{% trans "Choose the gender ..." %}</option>
+                <option>{% trans "Choose the gender ..." %}</option>
                 <option value="M">{% trans "Male" %}</option>
                 <option value="F">{% trans "Female" %}</option>
             </select>
         </div>
-        
 
-          <div class="form-group col-md-6">
+
+        <div class="form-group col-md-6">
             <label for="age" class="text-white">{% trans "Age" %}</label>
             <select name="age" id="age">
                 <option>{% trans "Choose the age range ..." %}</option>
@@ -45,34 +48,37 @@
                 <option value="36-50">36-50</option>
                 <option value="51+">51+</option>
             </select>
-          </div>
         </div>
+    </div>
 
 
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="address" class="text-white">{% trans "Address" %}</label>
-                <input name="address" type="text" class="form-control" id="address" placeholder="{% trans 'Enter customer address' %}" required>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="address" class="text-white">{% trans "Address" %}</label>
+            <input name="address" type="text" class="form-control" id="address"
+                placeholder="{% trans 'Enter customer address' %}" required>
 
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="city" class="text-white">{% trans "City" %}</label>
-                <input type="text"class="form-control" id="city" name="city" placeholder="{% trans 'Enter customer city' %}" required>
+                <input type="text" class="form-control" id="city" name="city"
+                    placeholder="{% trans 'Enter customer city' %}" required>
             </div>
         </div>
 
         <div class="form-group col-md-6">
-                <label for="zip" class="text-white">{% trans "Zip Code" %}</label>
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="{% trans 'Enter customer zip code' %}" required>
+            <label for="zip" class="text-white">{% trans "Zip Code" %}</label>
+            <input type="text" class="form-control" id="zip" name="zip"
+                placeholder="{% trans 'Enter customer zip code' %}" required>
         </div>
-    
+
         <div class="mt-4">
-        <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+            <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
         </div>
-   
-          
-            
-    </form>
+
+
+
+</form>
 {% endblock %}

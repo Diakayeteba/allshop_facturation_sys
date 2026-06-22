@@ -211,11 +211,11 @@ body {
     									<table class="table custom-table m-0">
     										<thead>
     											<tr>
-    												<th>{% trans "Items"% }</th>
+    												<th>{% trans "Items" %}</th>
 													<th>{% trans "Product ID"%}</th>
-													<th>Quantities</th>
-													<th>Unit Price</th>
-													<th>Subtotal</th>
+													<th>{% trans "Quantities" %}</th>
+													<th>{% trans "Unit Price" %}</th>
+													<th>{% trans "Subtotal" %}</th>
     											</tr>
     										</thead>
     										<tbody>
@@ -257,14 +257,14 @@ body {
     											
     											
     											<tr>
-    												<td>Comment: {{obj.comments}}</td>
+    												<td>{% trans "Comment" %} : {{obj.comments}}</td>
     												<td colspan="2">
 														<p>
-															Subtotal<br>
-															Shipment &amp; Handling<br>
-															Tax<br>
+															{% trans "Subtotal" %}<br>
+															{% trans "Shipment & Handling" %}<br>
+															{% trans "Tax" %}<br>
 														</p>
-    													<h5 class="text-success"><strong>Total</strong></h5>
+    													<h5 class="text-success"><strong>{% trans "Total" %}</strong></h5>
     												</td>			
     												<td>
     													<p>
@@ -275,13 +275,13 @@ body {
     													<h5 class="text-success"><strong>${{obj.get_total}} FCFA</strong></h5>
     												</td>
                                                     <td> 
-                                                            PAID:                    
+                                                            {% trans "PAID" %}:                  
 
                                                         {% if obj.paid  %}
 
-                                                          <Strong style="color: green;">Yes</Strong>
+                                                          <Strong style="color: green;">{% trans "Yes" %}</Strong>
                                                         {% else %}
-                                                           <Strong style="color: red;">No</Strong>
+                                                           <Strong style="color: red;">{% trans "No" %}</Strong>
    
                                                         {% endif %}
                                                     </td>
@@ -296,7 +296,7 @@ body {
     					</div>
     
     					<div class="invoice-footer">
-    						Thank you for your purchase .
+    						{% trans "Thank you for your purchase." %}
     					</div>
     
     				</div>
