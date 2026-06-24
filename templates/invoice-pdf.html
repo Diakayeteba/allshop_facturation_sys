@@ -8,145 +8,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
     
     <title>Invoice</title> 
 
-  <style>
+		<style>
+        /* --- CSS DE BASE BOOTSTRAP ESSENTIEL POUR LE PDF (Intégré localement) --- */
+        .container { width: 100%; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+        .row { display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px; }
+        .col-xl-12, .col-lg-12, .col-md-12, .col-sm-12, .col-12, .col-xl-6, .col-lg-6, .col-md-6, .col-sm-6, .col-xl-9, .col-lg-9, .col-xl-3, .col-lg-3 { position: relative; width: 100%; padding-right: 15px; padding-left: 15px; }
+        .col-xl-6, .col-lg-6, .col-md-6, .col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+        .col-xl-9, .col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+        .col-xl-3, .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+        .text-right { text-align: right; }
+        .text-success { color: #28a745 !important; font-weight: bold; }
+        .text-danger { color: #dc3545 !important; font-weight: bold; }
+        .p-0 { padding: 0 !important; }
+        .m-0 { margin: 0 !important; }
 
+        /* --- TON STYLE PERSONNALISÉ --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 0.875rem;
+            color: #333333;
+            background: #ffffff !important;
+        }
 
-body {
-    margin: 0;
-    padding: 0;
-    font: 400 .875rem 'Open Sans', sans-serif;
-    color: #333333; /* Texte principal en gris très sombre */
-    background: #ffffff !important; /* Fond de page blanc */
-    position: relative;
-    height: 100%;
-}
+        .invoice-container {
+            padding: 1rem;
+            background: #ffffff;
+        }
 
-.invoice-container {
-    padding: 1rem;
-    background: #ffffff;
-}
+        .invoice-container .invoice-header .invoice-logo {
+            margin: 0.8rem 0 0 0;
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #000000;
+            text-decoration: none;
+        }
 
-/* --- LOGO ET HEADER --- */
-.invoice-container .invoice-header .invoice-logo {
-    margin: 0.8rem 0 0 0;
-    display: inline-block;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #000000; /* Logo en noir */
-}
+        .invoice-container .invoice-header address {
+            font-size: 0.8rem;
+            color: #555555;
+            margin: 0;
+            line-height: 140%;
+        }
 
-.invoice-container .invoice-header address {
-    font-size: 0.8rem;
-    color: #555555; /* Adresse en gris moyen */
-    margin: 0;
-}
+        .invoice-container .invoice-details {
+            margin: 1rem 0 0 0;
+            padding: 1rem;
+            line-height: 160%;
+            background: #f8f9fa;
+            border: 1px solid #eeeeee;
+            color: #333333;
+        }
 
-/* --- DÉTAILS DE LA FACTURE (Bloc client/date) --- */
-.invoice-container .invoice-details {
-    margin: 1rem 0 0 0;
-    padding: 1rem;
-    line-height: 180%;
-    background: #f8f9fa; /* Gris très clair pour contraster légèrement */
-    border: 1px solid #eeeeee;
-    color: #333333;
-}
+        .custom-table {
+            border: 1px solid #000000;
+            background: #ffffff;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px !important;
+        }
 
-/* --- TABLEAU (GRILLE) --- */
-.custom-table {
-    border: 1px solid #000000; /* Bordure noire */
-    background: #ffffff;
-}
+        .custom-table thead {
+            background: #f2f2f2;
+        }
 
-.custom-table thead {
-    background: #f2f2f2; /* Fond d'en-tête gris clair */
-}
+        .custom-table thead th {
+            border: 1px solid #000000;
+            color: #000000;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px;
+            font-size: 0.75rem;
+        }
 
-.custom-table thead th {
-    border: 1px solid #000000;
-    color: #000000; /* Titres en noir */
-    font-weight: bold;
-    text-transform: uppercase;
-}
+        .custom-table tbody td {
+            border: 1px solid #000000 !important;
+            color: #333333 !important;
+            padding: 8px;
+            font-size: 0.75rem;
+        }
 
-.table {
-    background: #ffffff;
-    color: #333333; /* Texte du tableau en sombre */
-    font-size: .75rem;
-    width: 100%;
-    border-collapse: collapse;
-}
+        .custom-table tbody tr:nth-of-type(even) {
+            background-color: #fafafa;
+        }
 
-.table tbody td {
-    border: 1px solid #000000 !important; /* Grille noire */
-    color: #333333 !important;
-    padding: 8px;
-}
+        .invoice-container .invoice-footer {
+            text-align: center;
+            font-size: 0.7rem;
+            margin: 30px 0 0 0;
+            color: #888888;
+            border-top: 1px solid #eeeeee;
+            padding-top: 10px;
+        }
 
-/* --- ALTERNANCE DE COULEUR (ZEBRA) --- */
-.custom-table > tbody tr:nth-of-type(even) {
-    background-color: #fafafa; /* Très léger gris pour les lignes paires */
-}
+        .card {
+            background: #ffffff;
+            border: 1px solid #eeeeee;
+            color: #333333;
+        }
+    </style>
 
-.custom-table > tbody tr:hover {
-    background: #f1f1f1;
-}
-
-/* --- STATUT ET BADGES --- */
-.invoice-status {
-    text-align: center;
-    padding: 1rem;
-    background: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    color: #333333;
-}
-
-.invoice-status h5.status-title {
-    color: #666666;
-}
-
-.text-success {
-    color: #28a745 !important; /* Vert standard (plus lisible sur blanc) */
-    font-weight: bold;
-}
-
-.text-danger {
-    color: #dc3545 !important; /* Rouge standard */
-    font-weight: bold;
-}
-
-/* --- FOOTER --- */
-.invoice-container .invoice-footer {
-    text-align: center;
-    font-size: 0.7rem;
-    margin: 20px 0 0 0;
-    color: #888888;
-    border-top: 1px solid #eeeeee;
-    padding-top: 10px;
-}
-
-/* --- NETTOYAGE LIENS --- */
-.table tbody td a {
-    color: #007bff; /* Bleu standard pour les liens */
-    text-decoration: none;
-}
-
-/* Supprimer les effets de carte sombre */
-.card {
-    background: #ffffff;
-    border: 1px solid #eeeeee;
-    color: #333333;
-}
-</style>
- 
 </head>
 <body>
     
