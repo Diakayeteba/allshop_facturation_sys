@@ -47,7 +47,7 @@ body{
 .invoice-status {
     text-align: center;
     padding: 1rem;
-    background: #272e48;
+    background: #a9b0c7;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -82,13 +82,13 @@ body{
 @media (max-width: 767px) {
     .invoice-container {
         padding: 1rem;
-        background: #020d28;
+        background: #b2bbd1;
         min-height: 100vh;
     }
 }
 
 .card {
-    background: #272E48;
+    background: #b7bfdb;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -97,23 +97,24 @@ body{
 }
 
 .custom-table {
-    border: 1px solid #2b3958;
+    border: 1px solid #a7b9e1;
 }
 .custom-table thead {
-    background: #03162d;
+    background: #aac3e2;
+    
 }
 .custom-table thead th {
     border: 0;
     color: #4d4b4b;
 }
 .custom-table > tbody tr:hover {
-    background: #172033;
+    background: #cdd4e3;
 }
 .custom-table > tbody tr:nth-of-type(even) {
     background-color: #1a243a;
 }
 .custom-table > tbody td {
-    border: 1px solid #2e3d5f;
+    border: 1px solid #bcd0f7 !important;
 }
 
 .table {
@@ -135,7 +136,7 @@ body{
 
 /* Force la couleur sur toutes les cellules du tableau */
 .table, .custom-table tbody td {
-    color: #4d4c4c !important; /* Blanc pur */
+    color: #fa0d0d !important; /* Blanc pur */
 }
 
 /* Si les noms des clients sont des liens <a> */
