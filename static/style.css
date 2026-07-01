@@ -137,6 +137,7 @@ body{
 /* Force la couleur sur toutes les cellules du tableau */
 .table, .custom-table tbody td {
     color: #fa0d0d !important; /* Blanc pur */
+    padding: auto;
 }
 
 /* Si les noms des clients sont des liens <a> */
