@@ -2,8 +2,8 @@ body{
     margin: 0;
     padding: 0;
     font: 400 .875rem 'Open Sans', sans-serif;
-    color: #bcd0f7;
-    background: #bfcced !important;
+    color: #2866e2;
+    background: #426bd5 !important;
     position: relative;
     height: 100%;
 }
@@ -123,7 +123,7 @@ body{
     font-size: .75rem;
 }
 .text-success {
-    color: #c0d64a !important;
+    color: #08fe39 !important;
 }
 .custom-actions-btns {
     margin: auto;
@@ -136,13 +136,13 @@ body{
 
 /* Force la couleur sur toutes les cellules du tableau */
 .table, .custom-table tbody td {
-    color: #fa0d0d !important; /* Blanc pur */
+    color: #ea21ea !important; /* Blanc pur */
     padding: auto;
 }
 
 /* Si les noms des clients sont des liens <a> */
 .table tbody td a {
-    color: #5e5c5c;
+    color: #5c5e5c;
     text-decoration: none;
 }
 
@@ -150,4 +150,11 @@ body{
 .navbar-light .navbar-nav .nav-link, 
 .navbar-brand {
     color: #534d4d !important;
+}
+
+td{
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: #d0ebc5;
 }
